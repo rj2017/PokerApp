@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.PokemonDetailActivity"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp">
+
+            <include layout="@layout/item_detail_toolbar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_pokemon_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:tabIndicatorHeight="0dp"
+            app:tabBackground="@drawable/tab_background"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="?attr/colorPrimary"
+            app:tabMode="fixed">
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_page"/>
+
+    </LinearLayout>
+</layout>

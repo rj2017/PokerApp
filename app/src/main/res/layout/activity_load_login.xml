@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/shape_layout"
+    tools:context=".view.LoadLoginActivity">
+
+    <ImageView
+        android:id="@+id/img_loadLogin"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/img_loading"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_loadLogin_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        style="@style/TextBlack"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/img_loadLogin"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_loadLogin_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Joao"
+        style="@style/TextBlack"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_loadLogin_txt1"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_loadLogin_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/starting_your_pokerdex_in_3"
+        style="@style/TextBlack"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_loadLogin_nome"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_loadLogin_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3.."
+        style="@style/TextBlack"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="3dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_loadLogin_nome"
+        app:layout_constraintLeft_toRightOf="@+id/txt_loadLogin_txt2"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
