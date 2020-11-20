@@ -1,6 +1,6 @@
 <resources>
     <string name="ERROR_UNEXPECTED">Um erro inesperado ocorreu. Tente novamente mais tarde.</string>
-    <string name="ERROR_LOAD_DAMAGE">Não localizado algumas informações do Pokemon.</string>
+    <string name="ERROR_LOAD_POKEMON">Não localizado algumas informações do Pokemon.</string>
     <string name="ERROR_INTERNET_CONNECTION">Conexão à internet necessária para uso da applicação.</string>
     <string name="ERROR_SEARCH">Não Localizado o pokemon pelo nome ou id informado!</string>
 
@@ -9,7 +9,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="what_is_your_name">What is your name?</string>
-    <string name="my_name_is">My name is...</string>
+    <string name="my_name_is">My name is…</string>
     <string name="starting_your_pokerdex_in_3">Starting your PokerDex in</string>
     <string name="welcome">Welcome</string>
 
@@ -22,4 +22,8 @@
     <string name="resistences">Resistences</string>
     <string name="about">A Pokédex is an electronic device designed to catalogue and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series.</string>
     <string name="app_version">App version</string>
+    <string name="yes">Sim</string>
+    <string name="cancel">Cancelar</string>
+    <string name="text_logout">Tem certeza que deseja deslogar?</string>
+    <string name="logout">Logout</string>
 </resources>

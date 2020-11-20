@@ -8,6 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokerapp.R
 import com.example.pokerapp.viewmodel.SplashViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -34,11 +37,17 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
-                Handler().postDelayed({
-                    startActivity(Intent(this, LoginActivity::class.java))
-                }, SPLASH_TIME_OUT)
 
+                GlobalScope.launch {
+                    delay(SPLASH_TIME_OUT)
+                    goToNextActivity()
+
+                }
             }
         })
+    }
+
+    private fun goToNextActivity(){
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

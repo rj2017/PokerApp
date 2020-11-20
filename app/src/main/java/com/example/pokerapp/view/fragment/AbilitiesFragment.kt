@@ -21,7 +21,7 @@ import com.example.pokerapp.viewmodel.factory.AbilitiesViewModelFactory
 
 class AbilitiesFragment : Fragment() {
 
-    private lateinit var pokeAbilities: HashMap<String, String>
+    private lateinit var pokeAbilities: List<String>
     private var idPokemon : Int = 0
 
     private val abilitiesAdapter : AbilitiesAdapter by lazy {
@@ -39,7 +39,7 @@ class AbilitiesFragment : Fragment() {
     ): View? {
 
         val root =inflater.inflate(R.layout.fragment_abilities, container, false)
-        pokeAbilities = arguments?.getSerializable(PokeConstants.PUTEXTRAS.ABILITIES) as HashMap<String, String>
+        pokeAbilities = arguments?.getSerializable(PokeConstants.PUTEXTRAS.ABILITIES) as List<String>
         idPokemon = arguments?.getInt(PokeConstants.PUTEXTRAS.ID_POKEMON) as Int
 
         root.findViewById<RecyclerView>(R.id.recycler_abilities).apply {
@@ -54,7 +54,7 @@ class AbilitiesFragment : Fragment() {
         return root
     }
 
-    private fun initList(lista : HashMap<String,String>){
+    private fun initList(lista : List<String>){
         abilitiesViewModel.getAbilities(lista)
     }
 

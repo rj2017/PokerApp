@@ -1,10 +1,8 @@
 package com.example.pokerapp.rest.services
 
-import com.example.pokerapp.model.AbilitiesPokemonModel
-import com.example.pokerapp.model.DamageModel
-import com.example.pokerapp.model.DetailPokemonModel
-import com.example.pokerapp.model.PokemonListModel
+import com.example.pokerapp.model.*
 import retrofit2.Call
+import retrofit2.Response
 
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,14 +10,14 @@ import rx.Observable
 
 interface IPokerService {
 
-    @GET("pokemon?limit=20&offset=00")
-    fun listPokemons() : Observable<PokemonListModel>
+    @GET("pokemon?limit=50&offset=00")
+    fun listPokemons() : Call<PokemonListModel>
 
     @GET("{url}")
-    fun getPokemonbyUrl(@Path("url") url : String) : Observable<DetailPokemonModel>
+    suspend fun getPokemonbyUrl(@Path("url") url : String) : Response<DetailPokemonModel>
 
     @GET("pokemon/{id}/")
-    fun getPokemonsbyId(@Path("id") id : Int) : Call<DetailPokemonModel>
+    suspend fun getPokemonsbyId(@Path("id") id : Int) : Response<DetailPokemonModel>
 
     @GET("type/{id}/")
     fun getDamageById(@Path("id") id : Int) : Call<DamageModel>
@@ -27,6 +25,12 @@ interface IPokerService {
     @GET("pokemon/{name}")
     fun getPokemonByName(@Path("name") name : String) : Call<DetailPokemonModel>
 
+    @GET("pokemon-species/{id}/")
+    suspend fun getChainId(@Path("id") id : Int) : Response<ChainIdModel>
+
     @GET("{url}")
-    fun getAbilitiesbyUrl(@Path("url") url : String) : Call<AbilitiesPokemonModel>
+    suspend fun getEvolutionsByUrl(@Path("url") url : String) : Response<EvolutionModel>
+
+    @GET("{url}")
+    suspend fun getAbilitiesbyUrl(@Path("url") url : String) : Response<AbilitiesPokemonModel>
 }

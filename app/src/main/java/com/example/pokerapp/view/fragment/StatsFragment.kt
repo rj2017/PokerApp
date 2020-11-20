@@ -113,9 +113,9 @@ class StatsFragment : Fragment() {
             if (it.isSucess()){
                 if (it.data!!.damage_relations.doubleDamageFrom.size > 0) weaknessesAdapter.updateList(it.data)
                 if (it.data.damage_relations.doubleDamageTo.size > 0) resistencesAdapter.updateList(it.data)
-            }else{
+            }/*else{
                 Toast.makeText(context,it.error!!.message,Toast.LENGTH_SHORT).show()
-            }
+            }*/
         })
     }
 

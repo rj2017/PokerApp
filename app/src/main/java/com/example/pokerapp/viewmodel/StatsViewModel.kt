@@ -8,6 +8,7 @@ import com.example.pokerapp.model.DamageModel
 import com.example.pokerapp.rest.listeners.APIListener
 import com.example.pokerapp.rest.repository.PokerRepository
 import com.example.pokerapp.util.Resource
+import java.lang.IllegalArgumentException
 
 class StatsViewModel(application: Application, val repository: PokerRepository) : AndroidViewModel(application) {
 
@@ -21,7 +22,7 @@ class StatsViewModel(application: Application, val repository: PokerRepository) 
             }
 
             override fun onFailure(message: String) {
-                mListDamage.value = Resource(null,Throwable(message))
+                mListDamage.value = Resource(null,IllegalArgumentException(message))
             }
 
         })

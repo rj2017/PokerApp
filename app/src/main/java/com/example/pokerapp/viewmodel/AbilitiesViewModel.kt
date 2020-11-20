@@ -8,24 +8,20 @@ import com.example.pokerapp.model.AbilitiesPokemonModel
 import com.example.pokerapp.rest.listeners.APIListener
 import com.example.pokerapp.rest.repository.PokerRepository
 import com.example.pokerapp.util.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class AbilitiesViewModel(application: Application, val repository: PokerRepository) : AndroidViewModel(application) {
 
     private val mListAbilities = MutableLiveData<Resource<List<AbilitiesPokemonModel>>>()
     val listAbilities : LiveData<Resource<List<AbilitiesPokemonModel>>> = mListAbilities
 
-    fun getAbilities(lista : HashMap<String,String>){
+    fun getAbilities(lista : List<String>){
 
         val listaRetorno = mutableListOf<AbilitiesPokemonModel>()
 
-        CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.Default) {
+        GlobalScope.launch(Dispatchers.Main){
                 lista.forEach {
-                    repository.getAbilities(it.value, object : APIListener<AbilitiesPokemonModel> {
+                    repository.getAbilities(it, object : APIListener<AbilitiesPokemonModel> {
                         override fun onSucess(result: AbilitiesPokemonModel, statusCode: Int) {
                             listaRetorno.add(result)
                         }
@@ -36,8 +32,9 @@ class AbilitiesViewModel(application: Application, val repository: PokerReposito
 
                     })
                 }
-            }
-            mListAbilities.postValue(Resource(listaRetorno))
+
+            mListAbilities.value  = Resource(listaRetorno)
         }
+
     }
 }

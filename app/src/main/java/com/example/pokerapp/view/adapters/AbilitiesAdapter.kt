@@ -15,7 +15,6 @@ class AbilitiesAdapter(val context: Context) : RecyclerView.Adapter<AbilitiesVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbilitiesViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.item_ablilities_list, parent,false)
-
         return AbilitiesViewHolder(item,context)
     }
 

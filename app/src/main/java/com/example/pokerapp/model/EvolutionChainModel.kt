@@ -2,11 +2,8 @@ package com.example.pokerapp.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CommunReturnModel (
-
-    @SerializedName("name")
-    val name : String = "",
+class EvolutionChainModel {
 
     @SerializedName("url")
-    val url: String =""
-)
+    val url: String = ""
+}

@@ -56,7 +56,7 @@ class MainActivityViewHolder(itemView: View, val context: Context) :
                 putString(PokeConstants.PUTEXTRAS.IMAGE,getUrlImage(detailPokemon.id))
                 putInt(PokeConstants.PUTEXTRAS.ID_POKEMON, detailPokemon.id)
                 putSerializable(PokeConstants.PUTEXTRAS.STATS, getStats(detailPokemon.stats))
-                putSerializable(PokeConstants.PUTEXTRAS.ABILITIES, getAbilities(detailPokemon.abilities))
+                putStringArrayList(PokeConstants.PUTEXTRAS.ABILITIES, getAbilities(detailPokemon.abilities))
                 putString(PokeConstants.PUTEXTRAS.NAME, detailPokemon.name)
                 putString(PokeConstants.PUTEXTRAS.TYPE, detailPokemon.types[0].type.name)
             }
@@ -77,11 +77,10 @@ class MainActivityViewHolder(itemView: View, val context: Context) :
         return lista
     }
 
-    fun getAbilities(abilitiesModel: List<AbilitiesModel>) : HashMap<String,String>{
-        val lista = HashMap<String,String>()
-
+    fun getAbilities(abilitiesModel: List<AbilitiesModel>) : ArrayList<String>{
+        val lista : ArrayList<String> = arrayListOf()
         abilitiesModel.forEach {
-         lista[it.communReturn.name] = it.communReturn.url
+         lista.add(it.communReturn.url)
         }
         return lista
     }
