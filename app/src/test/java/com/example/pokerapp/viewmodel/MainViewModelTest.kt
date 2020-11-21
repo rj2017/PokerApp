@@ -36,5 +36,5 @@ class MainViewModelTest {
 
         mainActivityViewModel.getPokemonByName("pikachu")
     }
-    
+
 }
