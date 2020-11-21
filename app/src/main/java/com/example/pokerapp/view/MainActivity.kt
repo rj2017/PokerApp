@@ -16,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokerapp.R
-import com.example.pokerapp.databinding.ActivityLoginBinding
 import com.example.pokerapp.databinding.ActivityMainBinding
 import com.example.pokerapp.view.adapters.MainActivityAdapter
 import com.example.pokerapp.viewmodel.MainViewModel
@@ -50,14 +49,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnKeyListen
 
         }
 
+        edt_item_toolbar.setOnKeyListener(this)
         img_about_toolbar.setOnClickListener(this)
         img_exit.setOnClickListener(this)
-        edt_item_toolbar.setOnKeyListener(this)
 
-        mainViewModel.islogged()
+        //mainViewModel.islogged()
+        observe()
         setupActionBar()
         setList()
-        observe()
     }
 
 
@@ -79,18 +78,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, View.OnKeyListen
         mainViewModel.listDetailPokemon.observe(this, Observer {
             if (it.isSucess()){
                 viewAdapter.updateList(it.data!!)
+                val s = ""
             }else{
                 Toast.makeText(this,it.error?.message,Toast.LENGTH_SHORT).show()
             }
         })
         mainViewModel.logged.observe(this, Observer {
             if (!it){
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
-                startActivity(
-                    Intent(
-                    this, LoginActivity::class.java
-                )
-                )
             }
         })
 

@@ -21,7 +21,7 @@ class PokemonDetailViewModel(application: Application) : AndroidViewModel(applic
 
     fun getPokemonById(id : Int){
 
-        CoroutineScope(Dispatchers.Main).launch{
+        CoroutineScope(Dispatchers.IO).launch{
         mRepository.getPokemonById(id, object : APIListener<DetailPokemonModel>{
             override fun onSucess(result: DetailPokemonModel, statusCode: Int) {
                 mListDetailPokemon.value = Resource(data = result)

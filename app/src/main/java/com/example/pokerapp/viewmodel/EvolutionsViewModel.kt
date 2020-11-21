@@ -18,11 +18,11 @@ class EvolutionsViewModel(application: Application, val repository: PokerReposit
     fun getEvolution(id : Int){
         repository.getIdChain(id, object : APIListener<EvolutionModel>{
             override fun onSucess(result: EvolutionModel, statusCode: Int) {
-                mListEvolution.value = Resource(result)
+                mListEvolution.postValue(Resource(result))
             }
 
             override fun onFailure(message: String) {
-                mListEvolution.value = Resource(null,IllegalArgumentException(message))
+                mListEvolution.postValue(Resource(null,IllegalArgumentException(message)))
             }
 
         })

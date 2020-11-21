@@ -15,19 +15,14 @@ import com.example.pokerapp.util.Resource
 import com.example.pokerapp.util.SecurityPreferences
 import com.example.pokerapp.util.UrlUtil
 import kotlinx.android.synthetic.main.activity_pokemon_detail.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.lang.IllegalArgumentException
 
-class MainViewModel(application: Application, val mRepository: PokerRepository) :
+class MainViewModel(application: Application, val mRepository: PokerRepository, val mSecurityPreferences : SecurityPreferences) :
     AndroidViewModel(application) {
 
-    private val mSecurityPreferences =
-        SecurityPreferences(application)
 
     private val isLogged = MutableLiveData<Boolean>()
     val logged : LiveData<Boolean> = isLogged
@@ -41,7 +36,7 @@ class MainViewModel(application: Application, val mRepository: PokerRepository) 
 
             mRepository.listAllPokemons(object : APIListener<PokemonListModel> {
                 override fun onSucess(result: PokemonListModel, statusCode: Int) {
-                    GlobalScope.launch(Dispatchers.IO){
+                    GlobalScope.launch(Dispatchers.Main){
                     result.results.forEach {
                         val urlSearch = UrlUtil.getUrlForSearch(it.url)
                         val pokemonsDetail = mRepository.getPokemonsByUrl(urlSearch)
@@ -49,9 +44,11 @@ class MainViewModel(application: Application, val mRepository: PokerRepository) 
                             lista.add(MainArrayListModel(id = pokemonsDetail.data!!.id, name = pokemonsDetail.data!!.name, types = pokemonsDetail.data!!.types,
                                 sprites = pokemonsDetail.data!!.sprites, abilities = pokemonsDetail.data!!.abilities, stats = pokemonsDetail.data!!.stats))
                         }
+                        mListDetailPokemon.value = Resource(lista)
                     }
+
                     }
-                    mListDetailPokemon.value = Resource(lista)
+
                 }
 
                 override fun onFailure(message: String) {
@@ -85,9 +82,7 @@ class MainViewModel(application: Application, val mRepository: PokerRepository) 
 
     fun islogged(){
         val name = mSecurityPreferences.getString(PokeConstants.SHARED.name)
-        if ( name.isNullOrEmpty()){
-            isLogged.value = true
-        }
+        isLogged.value = !name.isNullOrEmpty()
     }
 
 
